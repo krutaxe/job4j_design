@@ -1,6 +1,8 @@
 package ru.job4j;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class BackwardArrayIt implements Iterator<Integer> {
@@ -24,6 +26,4 @@ public class BackwardArrayIt implements Iterator<Integer> {
         }
         return data[point--];
     }
-
-
 }
