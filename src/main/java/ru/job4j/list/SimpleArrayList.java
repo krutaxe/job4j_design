@@ -78,7 +78,7 @@ public class SimpleArrayList<T> implements List<T> {
                 if (!hasNext()) {
                     throw  new NoSuchElementException();
                 }
-        return container[cursor++];
+            return container[cursor++];
             }
         };
     }
