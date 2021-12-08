@@ -1,15 +1,7 @@
 package ru.job4j.set;
 
 import org.junit.Test;
-import ru.job4j.iterator.ListUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-
 public class SimpleSetTest {
 
     @Test

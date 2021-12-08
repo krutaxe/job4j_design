@@ -20,8 +20,8 @@ public class SimpleSet<T> implements Set<T> {
 
     @Override
     public boolean contains(T value) {
-        for (T e : set) {
-            if (Objects.equals(e, value)) {
+        for (int i = 0; i < set.size(); i++) {
+            if (Objects.equals(set.get(i), value)) {
                 return true;
             }
         }
