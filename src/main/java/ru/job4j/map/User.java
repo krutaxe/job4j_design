@@ -29,6 +29,19 @@ public class User {
         return Objects.hash(name, children, birthday);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children && birthday == user.birthday
+                && Objects.equals(name, user.name);
+    }
+
     public static void main(String[] args) {
         User user1 = new User("Elena", 1, 1990);
         User user2 = new User("Elena", 1, 1990);
@@ -51,5 +64,7 @@ public class User {
         for (Map.Entry<User, Object> entry: map2.entrySet()) {
             System.out.println(entry);
         }
+
+        System.out.println("KING".hashCode());
     }
 }
