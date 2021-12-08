@@ -2,6 +2,7 @@ package ru.job4j.map;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class User {
     private String name;
@@ -23,17 +24,32 @@ public class User {
                + '}';
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
         User user1 = new User("Elena", 1, 1990);
         User user2 = new User("Elena", 1, 1990);
 
-        Map<User, Object> map = new HashMap<>();
-        map.put(user1, new Object());
-        map.put(user2, new Object());
+        Map<User, Object> map1 = new HashMap<>();
+        map1.put(user1, new Object());
+        map1.put(user2, new Object());
 
-        for (Map.Entry<User, Object> entry: map.entrySet()) {
+        for (Map.Entry<User, Object> entry: map1.entrySet()) {
             System.out.println(entry);
         }
 
+        User user3 = new User("Dima", 3, 1999);
+        User user4 = new User("Dima", 3, 1999);
+
+        Map<User, Object> map2 = new HashMap<>();
+        map2.put(user3, new Object());
+        map2.put(user4, new Object());
+
+        for (Map.Entry<User, Object> entry: map2.entrySet()) {
+            System.out.println(entry);
+        }
     }
 }
