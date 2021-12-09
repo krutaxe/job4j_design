@@ -64,7 +64,5 @@ public class User {
         for (Map.Entry<User, Object> entry: map2.entrySet()) {
             System.out.println(entry);
         }
-
-        System.out.println("KING".hashCode());
     }
 }
