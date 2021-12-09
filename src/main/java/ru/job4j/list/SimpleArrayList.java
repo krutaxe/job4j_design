@@ -73,7 +73,7 @@ public class SimpleArrayList<T> implements List<T> {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
-            return cursor < size && container[cursor] != null;
+            return cursor < size;
             }
 
             @Override
