@@ -1,7 +1,5 @@
 package ru.job4j.map;
 
-import com.sun.source.tree.IfTree;
-
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -118,8 +116,8 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private static class MapEntry<K, V> {
-        K key;
-        V value;
+       private final K key;
+        private final V value;
 
         public MapEntry(K key, V value) {
             this.key = key;
