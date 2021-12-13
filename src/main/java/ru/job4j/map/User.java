@@ -25,11 +25,6 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, children, birthday);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -42,27 +37,40 @@ public class User {
                 && Objects.equals(name, user.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
-        User user1 = new User("Elena", 1, 1990);
-        User user2 = new User("Elena", 1, 1990);
-
-        Map<User, Object> map1 = new HashMap<>();
-        map1.put(user1, new Object());
-        map1.put(user2, new Object());
-
-        for (Map.Entry<User, Object> entry: map1.entrySet()) {
-            System.out.println(entry);
-        }
-
-        User user3 = new User("Dima", 3, 1999);
-        User user4 = new User("Dima", 3, 1999);
-
-        Map<User, Object> map2 = new HashMap<>();
-        map2.put(user3, new Object());
-        map2.put(user4, new Object());
-
-        for (Map.Entry<User, Object> entry: map2.entrySet()) {
-            System.out.println(entry);
-        }
+//        User user1 = new User("Elena", 1, 1990);
+//        User user2 = new User("Elena", 1, 1990);
+//
+//        Map<User, Object> map1 = new HashMap<>();
+//        map1.put(user1, new Object());
+//        map1.put(user2, new Object());
+//
+//        for (Map.Entry<User, Object> entry: map1.entrySet()) {
+//            System.out.println(entry);
+//        }
+//
+//        User user3 = new User("Dima", 3, 1999);
+//        User user4 = new User("Dima", 3, 1999);
+//
+//        Map<User, Object> map2 = new HashMap<>();
+//        map2.put(user3, new Object());
+//        map2.put(user4, new Object());
+//
+//        for (Map.Entry<User, Object> entry: map2.entrySet()) {
+//            System.out.println(entry);
+//        }
+//
+//        System.out.println(user1.hashCode());
+//        System.out.println(Integer.hashCode(user1.birthday));
+//        System.out.println(Integer.hashCode(user1.birthday));
+        int x = 432;
+        int y = 277;
+        System.out.println(512 >> 1);
+        System.out.println(1077724 >> 11);
     }
 }
