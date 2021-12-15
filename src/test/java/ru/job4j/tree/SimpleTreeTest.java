@@ -4,8 +4,8 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-
 public class SimpleTreeTest {
+
     @Test
     public void when6ElFindLastThen6() {
         Tree<Integer> tree = new SimpleTree<>(1);
@@ -44,5 +44,4 @@ public class SimpleTreeTest {
         tree.add(5, 6);
         assertTrue(tree.add(1, 3));
     }
-
 }
