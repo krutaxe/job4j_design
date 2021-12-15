@@ -3,12 +3,19 @@ package ru.job4j.tree;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public interface Tree<E> {
 
     boolean add(E parent, E child);
 
+    boolean isBinary();
+
     Optional<Node<E>> findBy(E value);
+
+    private Optional<Node> findByPredicate(Predicate<Node<E>> condition) {
+        return null;
+    }
 
     class Node<E> {
        private final E value;
