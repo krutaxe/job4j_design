@@ -27,7 +27,6 @@ public class SimpleTree<E> implements Tree<E> {
     }
 
     public boolean isBinary() {
-
         return findByPredicate(el -> el.getChildren().size() > 2).isEmpty();
     }
 
