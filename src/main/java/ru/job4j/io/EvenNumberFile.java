@@ -8,7 +8,7 @@ public class EvenNumberFile {
             while ((line = in.readLine()) != null) {
                 int i = Integer.parseInt(line);
                 if (i % 2 == 0) {
-                    System.out.println(i);
+                    System.out.println("Число " + i + " чётное.");
                 }
             }
         } catch (IOException e) {
