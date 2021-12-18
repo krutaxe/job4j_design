@@ -25,10 +25,11 @@ public class Config {
         }
         out.stream().filter(line -> !line.contains("#") && line.length() > 0)
                 .forEach(line -> {
-                    if (line.split("=").length < 2 || line.split("=").length == 0) {
+                    String[] el = line.split("=");
+                    if (el.length < 2) {
                         throw new IllegalArgumentException("pair not found error");
                     } else {
-                        values.put(line.split("=")[0], line.split("=")[1]);
+                        values.put(el[0], el[1]);
                     }
                 });
     }
