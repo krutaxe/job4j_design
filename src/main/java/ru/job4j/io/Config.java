@@ -26,7 +26,7 @@ public class Config {
         out.stream().filter(line -> !line.contains("#") && line.length() > 0)
                 .forEach(line -> {
                     String[] el = line.split("=");
-                    if (el.length < 2) {
+                    if (el.length != 2) {
                         throw new IllegalArgumentException("pair not found error");
                     } else {
                         values.put(el[0], el[1]);
