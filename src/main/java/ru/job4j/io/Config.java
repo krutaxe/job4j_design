@@ -54,7 +54,6 @@ public class Config {
     public static void main(String[] args) {
         Config config = new Config("./data/pair_without_comment.properties");
         config.load();
-
     }
 
 }
