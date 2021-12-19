@@ -3,7 +3,7 @@ package ru.job4j.io;
 import java.io.*;
 public class Analizy {
 
-    public void unavailable(String source, String target) {
+    public void unavailable(String source, File target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source));
         PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
             String temp = null;
@@ -27,7 +27,6 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-        Analizy analizy = new Analizy();
-        analizy.unavailable("server_log.txt", "down_server.txt");
+
     }
 }
