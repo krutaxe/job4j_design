@@ -15,8 +15,8 @@ public class AnalizyTest {
 
     @Test
     public void chekServer() throws IOException {
-        File source = new File("source.txt");
-        File target = new File("target.txt");
+        File source = folder.newFile("source.txt");
+        File target = folder.newFile("target.txt");
         try (PrintWriter writer = new PrintWriter(source)) {
             writer.println(
                      "500 10:57:01;\n"
@@ -30,7 +30,7 @@ public class AnalizyTest {
         }
         Analizy analizy = new Analizy();
         StringBuilder rsl = new StringBuilder();
-        analizy.unavailable("source.txt", "target.txt");
+        analizy.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         try (BufferedReader reader = new BufferedReader(new FileReader(target))) {
             reader.lines().forEach(rsl::append);
         }
