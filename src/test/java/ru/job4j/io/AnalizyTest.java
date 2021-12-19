@@ -17,20 +17,21 @@ public class AnalizyTest {
     public void chekServer() throws IOException {
         File source = new File("source.txt");
         File target = new File("target.txt");
-        try (PrintWriter writer = new PrintWriter(source)){
-            writer.println("500 10:57:01;\n" +
-                    "400 10:58:01;\n" +
-                    "500 11:01:02;\n" +
-                    "200 11:02:02;\n" +
-                    "300 11:03:34;\n" +
-                    "400 11:12:10;\n" +
-                    "500 11:15:34;\n" +
-                    "200 11:20:55;");
+        try (PrintWriter writer = new PrintWriter(source)) {
+            writer.println(
+                     "500 10:57:01;\n"
+                   + "400 10:58:01;\n"
+                   + "500 11:01:02;\n"
+                   + "200 11:02:02;\n"
+                   + "300 11:03:34;\n"
+                   + "400 11:12:10;\n"
+                   + "500 11:15:34;\n"
+                   + "200 11:20:55;");
         }
         Analizy analizy = new Analizy();
         StringBuilder rsl = new StringBuilder();
         analizy.unavailable("source.txt", "target.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(target))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(target))) {
             reader.lines().forEach(rsl::append);
         }
         assertThat(rsl.toString(), is("10:57:01; - 11:02:02;11:12:10; - 11:20:55;"));
