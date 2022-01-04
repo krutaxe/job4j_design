@@ -19,6 +19,7 @@ public class ArgsName {
             if (!arg.startsWith("-") || !arg.contains("=") || arg.split("=").length < 2)  {
                 throw new IllegalArgumentException("invalid argument parameters ");
             }
+
             values.put(arg.split("=")[0].substring(1),
                     arg.split("=")[1]);
         }
