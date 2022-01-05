@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArgsName {
-
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
@@ -16,12 +15,13 @@ public class ArgsName {
             throw new IllegalArgumentException("Parameters missed");
         }
         for (String arg: args) {
-            if (!arg.startsWith("-") || !arg.contains("=") || arg.split("=").length < 2)  {
+            if (!arg.startsWith("-") || !arg.contains("=") || arg.split("=").length != 2)  {
                 throw new IllegalArgumentException("invalid argument parameters ");
             }
+            if (!arg.split("=")[0].substring(1).isEmpty() && !arg.split("=")[1].isEmpty()) {
+                values.put(arg.split("=")[0].substring(1), arg.split("=")[1]);
+            }
 
-            values.put(arg.split("=")[0].substring(1),
-                    arg.split("=")[1]);
         }
     }
 
@@ -33,8 +33,7 @@ public class ArgsName {
 
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
-        System.out.println(jvm.get("Xmx"));
-
+        System.out.println(jvm.get("encoding"));
         ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
     }
