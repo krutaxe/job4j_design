@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 public class Search {
     public static void main(String[] args) throws IOException {
         File file = new File(args[0]);
-        if (args.length != 2 || (file.isDirectory() && file.exists())) {
+        if (args.length != 2 || !(file.isDirectory() && file.exists())) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar "
                     + "ROOT_FOLDER.");
         }
