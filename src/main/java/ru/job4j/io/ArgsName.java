@@ -10,18 +10,22 @@ public class ArgsName {
         return values.get(key);
     }
 
+    private  void validateString(String arg) {
+        if (!arg.startsWith("-") || !arg.contains("=") || arg.split("=").length != 2)  {
+            throw new IllegalArgumentException("invalid argument parameters ");
+        }
+        if (arg.split("=")[0].substring(1).isEmpty() && arg.split("=")[1].isEmpty()) {
+            throw new IllegalArgumentException("invalid argument parameters ");
+        }
+    }
+
     private void parse(String[] args) {
         if (args.length == 0) {
             throw new IllegalArgumentException("Parameters missed");
         }
         for (String arg: args) {
-            if (!arg.startsWith("-") || !arg.contains("=") || arg.split("=").length != 2)  {
-                throw new IllegalArgumentException("invalid argument parameters ");
-            }
-            if (!arg.split("=")[0].substring(1).isEmpty() && !arg.split("=")[1].isEmpty()) {
-                values.put(arg.split("=")[0].substring(1), arg.split("=")[1]);
-            }
-
+            validateString(arg);
+            values.put(arg.split("=")[0].substring(1), arg.split("=")[1]);
         }
     }
 
