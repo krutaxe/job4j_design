@@ -25,16 +25,24 @@ public class Zip {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        if (args.length < 2) {
+    public static void validateArgs(String[] args) {
+        if (args.length != 3) {
             throw new IllegalArgumentException("Invalid args");
         }
-        ArgsName argsName = ArgsName.of(args);
+    }
+
+    public static void validateArgsName(ArgsName argsName) {
         if ((argsName.get("d") == null) || (argsName.get("o") == null)
                 || !(new File(argsName.get("d")).isDirectory())) {
             throw new IllegalArgumentException(
                     "The file is in the wrong directory or doesn't exist");
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        validateArgs(args);
+        ArgsName argsName = ArgsName.of(args);
+        validateArgsName(argsName);
         List<Path> file = new ArrayList<>(Search.search(Paths.get(argsName.get("d")),
                 p -> !p.toFile().getName().endsWith(argsName.get("e"))));
 
