@@ -19,7 +19,8 @@ public class EchoServer {
                          str != null && !str.isEmpty(); str = in.readLine()) {
 
                         if (str.contains("msg=Exit")) {
-                            out.write("Завершение работы сервера".getBytes());
+                            out.write("Завершение работы сервера".getBytes(
+                                    Charset.forName("WINDOWS-1251")));
                             server.close();
                             break;
                         }
