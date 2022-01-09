@@ -3,11 +3,11 @@ package ru.job4j.serialization.json;
 import java.util.Arrays;
 
 public class Car {
-    boolean newCar;
-    int door;
-    String color;
-    Engine engine;
-    String[] users;
+    private boolean newCar;
+    private int door;
+    private String color;
+    private Engine engine;
+    private String[] users;
 
     public Car(boolean newCar, int door, String color, Engine engine,
                String[] users) {

@@ -11,7 +11,6 @@ public class Main {
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(car));
-
         final String carJson =
                 "{"
                         + "\"newCar\":false,"

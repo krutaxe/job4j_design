@@ -1,8 +1,8 @@
 package ru.job4j.serialization.json;
 
 public class Engine {
-    String type;
-    int power;
+    private String type;
+    private int power;
 
     public Engine(String type, int power) {
         this.type = type;
