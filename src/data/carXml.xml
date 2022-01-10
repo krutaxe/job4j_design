@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car newCar="false" door="30" color="red">
+    <engine type="diesel" power="151"/>
+    <userses>
+        <users>Ivanov</users>
+        <users>Petrov</users>
+    </userses>
+</car>
