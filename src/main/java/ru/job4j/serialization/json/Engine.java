@@ -9,6 +9,14 @@ public class Engine {
         this.power = power;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
     @Override
     public String toString() {
         return "Engine{"

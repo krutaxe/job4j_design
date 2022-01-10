@@ -18,6 +18,26 @@ public class Car {
         this.users = users;
     }
 
+    public boolean isNewCar() {
+        return newCar;
+    }
+
+    public int getDoor() {
+        return door;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public String[] getUsers() {
+        return users;
+    }
+
     @Override
     public String toString() {
         return "Car{"
