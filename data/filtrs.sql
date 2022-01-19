@@ -57,7 +57,8 @@ select * from product p
 join type t on t.id = type_id
 where expired_date < current_date;
 
-select max(price) from product;
+select name, price from product
+where price = (select max(price) from product);
 
 
 select t.name, count(*) from product p
