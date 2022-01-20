@@ -68,4 +68,3 @@ where t1.gender = 'Male' and t2.gender = 'Female';
 
 
 
-
