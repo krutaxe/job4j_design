@@ -1,9 +1,9 @@
-create table departments(
+create table departments (
     id serial primary key,
     name varchar(255)
 );
 
-create table emploers(
+create table emploers (
     id serial primary key,
     name varchar(255),
     departments_id int references departments(id)
@@ -50,7 +50,6 @@ insert into teens (name, gender) values ('Roma', 'Male'), ('Anna', 'Female'),
 select t1.name, t2.name, t1.gender, t2.gender 
 from teens t1 cross join teens t2
 where t1.gender = 'Male' and t2.gender = 'Female'; 
-
 
 
 
