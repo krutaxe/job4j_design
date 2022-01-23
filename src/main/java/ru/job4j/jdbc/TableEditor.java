@@ -1,7 +1,7 @@
 package ru.job4j.jdbc;
 
-import ru.job4j.io.Config;
 
+import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -12,74 +12,54 @@ public class TableEditor implements AutoCloseable {
 
     private Properties properties;
 
-    public TableEditor(Properties properties) {
+    public TableEditor(Properties properties) throws ClassNotFoundException, SQLException {
         this.properties = properties;
         initConnection();
     }
 
-    private void initConnection() {
-        connection = null;
+    private void initConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+        String url = properties.getProperty("url");
+        String login = properties.getProperty("login");
+        String password = properties.getProperty("password");
+        connection = DriverManager.getConnection(url, login, password);
     }
 
-    private static Connection getConnection() throws Exception {
-        Config config = new Config("./data/app.properties");
-        config.load();
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection(config.value("url"),
-                config.value("login"), config.value("password"));
+    public void sqlQuery(String query) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(query);
+        }
     }
 
     public void createTable(String tableName) throws Exception {
-       try (Connection connection = getConnection()) {
-           try (Statement statement = connection.createStatement()) {
                String sql = String.format(
                        "create table " + tableName + " (%s, %s);",
-                       "id serial primary key",
-                       "name varchar(255)"
-               );
-               statement.executeUpdate(sql);
-           }
-       }
+                       "id serial primary key", "name varchar(255)");
+               sqlQuery(sql);
     }
 
     public void dropTable(String tableName) throws Exception {
-        try (Connection connection = getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                String sql = "DROP TABLE " + tableName;
-                statement.executeUpdate(sql);
-            }
-        }
+                String sql = String.format("DROP TABLE " + tableName);
+                sqlQuery(sql);
     }
 
     public void addColumn(String tableName, String columnName, String type) throws Exception {
-        try (Connection connection = getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                String sql = "ALTER TABLE " + tableName
-                        + " add column " + columnName + " " + type;
-                statement.executeUpdate(sql);
-            }
-        }
+                String sql = String.format("ALTER TABLE " + tableName
+                        + " add column " + columnName + " " + type);
+                sqlQuery(sql);
     }
 
     public void dropColumn(String tableName, String columnName) throws Exception {
-        try (Connection connection = getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                String sql = "ALTER TABLE " + tableName
-                        + " drop column " + columnName;
-                statement.executeUpdate(sql);
-            }
-        }
+                String sql = String.format("ALTER TABLE " + tableName
+                        + " drop column " + columnName);
+                sqlQuery(sql);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName)
-            throws Exception {
-        try (Connection connection = getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                String sql = "ALTER TABLE " + tableName
-                        + " RENAME COLUMN " + columnName + " TO " + newColumnName;
-                statement.executeUpdate(sql);
-            }
-        }
+            throws SQLException {
+                String sql = String.format("ALTER TABLE " + tableName
+                        + " RENAME COLUMN " + columnName + " TO " + newColumnName);
+                sqlQuery(sql);
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -109,30 +89,26 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
+        String path = "./data/app.properties";
         Properties properties = new Properties();
+        properties.load(new FileReader(path));
 
-        TableEditor tableEditor = new TableEditor(properties);
+        try (TableEditor tableEditor = new TableEditor(properties)) {
+            tableEditor.initConnection();
 
-        tableEditor.createTable("demo_db2");
-        try (Connection connection = getConnection()) {
-                System.out.println(getTableScheme(connection, "demo_db2"));
-            }
+            tableEditor.dropTable("demo_db2");
 
-        tableEditor.addColumn("demo_db2", "AGE", "int");
-        try (Connection connection = getConnection()) {
-            System.out.println(getTableScheme(connection, "demo_db2"));
+            tableEditor.createTable("demo_db2");
+            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+
+            tableEditor.addColumn("demo_db2", "Age", "int");
+            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+
+            tableEditor.dropColumn("demo_db2", "Age");
+            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+
+            tableEditor.renameColumn("demo_db2", "name", "LastName");
+            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
         }
-
-        tableEditor.dropColumn("demo_db2", "AGE");
-        try (Connection connection = getConnection()) {
-            System.out.println(getTableScheme(connection, "demo_db2"));
-        }
-
-        tableEditor.renameColumn("demo_db2", "name", "lastName");
-        try (Connection connection = getConnection()) {
-            System.out.println(getTableScheme(connection, "demo_db2"));
-        }
-
-        tableEditor.dropTable("demo_db2");
     }
 }
