@@ -1,7 +1,11 @@
 package ru.job4j.jdbc;
 
 
+import ru.job4j.io.Config;
+
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -32,33 +36,32 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) throws Exception {
-               String sql = String.format(
-                       "create table " + tableName + " (%s, %s);",
-                       "id serial primary key", "name varchar(255)");
+               String sql = "create table " + tableName
+                       + "(id serial primary key);";
                sqlQuery(sql);
     }
 
     public void dropTable(String tableName) throws Exception {
-                String sql = String.format("DROP TABLE " + tableName);
+                String sql = "DROP TABLE " + tableName;
                 sqlQuery(sql);
     }
 
     public void addColumn(String tableName, String columnName, String type) throws Exception {
-                String sql = String.format("ALTER TABLE " + tableName
-                        + " add column " + columnName + " " + type);
+                String sql = "ALTER TABLE " + tableName
+                        + " add column " + columnName + " " + type;
                 sqlQuery(sql);
     }
 
     public void dropColumn(String tableName, String columnName) throws Exception {
-                String sql = String.format("ALTER TABLE " + tableName
-                        + " drop column " + columnName);
+                String sql = "ALTER TABLE " + tableName
+                        + " drop column " + columnName;
                 sqlQuery(sql);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName)
             throws SQLException {
-                String sql = String.format("ALTER TABLE " + tableName
-                        + " RENAME COLUMN " + columnName + " TO " + newColumnName);
+                String sql = "ALTER TABLE " + tableName
+                        + " RENAME COLUMN " + columnName + " TO " + newColumnName;
                 sqlQuery(sql);
     }
 
@@ -89,26 +92,27 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        String path = "./data/app.properties";
-        Properties properties = new Properties();
-        properties.load(new FileReader(path));
+        String path = "./src/main/resources/app.properties";
+        Properties config = new Properties();
+        try (FileInputStream in = new FileInputStream(path)) {
+            config.load(in);
+            try (TableEditor tableEditor = new TableEditor(config)) {
 
-        try (TableEditor tableEditor = new TableEditor(properties)) {
-            tableEditor.initConnection();
+                tableEditor.dropTable("demo_db2");
 
-            tableEditor.dropTable("demo_db2");
+                tableEditor.createTable("demo_db2");
+                System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
 
-            tableEditor.createTable("demo_db2");
-            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+                tableEditor.addColumn("demo_db2", "Age", "int");
+                System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
 
-            tableEditor.addColumn("demo_db2", "Age", "int");
-            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+                tableEditor.renameColumn("demo_db2", "Age", "LastName");
+                System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
 
-            tableEditor.dropColumn("demo_db2", "Age");
-            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
-
-            tableEditor.renameColumn("demo_db2", "name", "LastName");
-            System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+                tableEditor.dropColumn("demo_db2", "Lastname");
+                System.out.println(getTableScheme(tableEditor.connection, "demo_db2"));
+            }
         }
+
     }
 }
