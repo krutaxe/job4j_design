@@ -26,6 +26,9 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(el -> {
                 String[] array = el.split(";");
+                if (array.length != 2 || array[0].isEmpty()) {
+                    throw new IllegalArgumentException("need two parameters");
+                }
                 User user = new User(array[0], array[1]);
                 users.add(user);
             });
