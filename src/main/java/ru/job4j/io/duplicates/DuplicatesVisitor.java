@@ -23,6 +23,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         }
         System.out.println(resultList);
     }
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         FileProperty fileProperty = new FileProperty(
