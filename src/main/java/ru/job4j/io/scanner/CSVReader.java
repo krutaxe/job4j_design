@@ -45,11 +45,9 @@ public class CSVReader {
             } else {
                 try (PrintWriter printWriter = new PrintWriter(new FileWriter(target))) {
                     printWriter.write(String.valueOf(builder));
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -62,11 +60,12 @@ public class CSVReader {
             throw new IllegalArgumentException("Parameter 'path' is not file");
         }
         String target = args.get("out");
-        if (!STDOUT.equals(target) && !Paths.get(target).toFile().isFile()) {
+        if (!STDOUT.equals(target) && !Paths.get(target).toFile().isFile()
+                && !Paths.get(target).toFile().exists()) {
             throw new IllegalArgumentException("Parameter 'out' is not file");
         }
-        if (args.get("delimiter") == null) {
-            throw new IllegalArgumentException("Delimiter is null");
+        if (args.get("delimiter") == null || !args.get("delimiter").equals(";")) {
+            throw new IllegalArgumentException("Delimiter is wrong parameter");
         }
     }
 
