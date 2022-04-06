@@ -1,10 +1,57 @@
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:18 +0300] "GET /items/ajax.html HTTP/1.1" 404 1113
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /job4j.ru/profile HTTP/1.1" 302 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /job4j.ru/profile/ HTTP/1.1" 404 1110
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:34 +0300] "GET /job4j.ru/profileNew/ HTTP/1.1" 404 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:48 +0300] "GET / HTTP/1.1" 200 11488
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /404.png HTTP/1.1" 200 5103
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /tomcat.css HTTP/1.1" 200 5931
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-nav.png HTTP/1.1" 200 1404
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-button.png HTTP/1.1" 200 713
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-middle.png HTTP/1.1" 200 4048
+C:\projects\cache\Address.txt
+C:\projects\cache\Names.txt
+C:\projects\job4j_design\.idea\checkstyleidea-libs\readme.txt
+C:\projects\job4j_design\404.txt
+C:\projects\job4j_design\down_server.txt
+C:\projects\job4j_design\even.txt
+C:\projects\job4j_design\log.txt
+C:\projects\job4j_design\log1.txt
+C:\projects\job4j_design\result.txt
+C:\projects\job4j_design\server_log.txt
+C:\projects\job4j_design\src\data\botAnswer.txt
+C:\projects\job4j_design\src\data\botLog.txt
+C:\projects\job4j_design\src\main\resources\dump.txt
+C:\projects\job4j_design\target\classes\dump.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.BackwardArrayItTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.collection.list.ForwardLinkedTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.collection.list.SimpleLinkedListTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.collection.list.SimpleQueueTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.collection.list.SimpleStackTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.generics.RoleStoreTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.generics.UserStoreTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.io.AnalizyTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.io.ArgsNameTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.io.ConfigTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.io.scanner.CSVReaderTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.it.EvenIteratorTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.it.MatrixItTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.iterator.FlatMapTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.iterator.ListUtilsTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.list.SimpleArrayListTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.map.SimpleMapTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.question.AnalizeTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.set.SimpleSetTest.txt
+C:\projects\job4j_design\target\surefire-reports\ru.job4j.tree.SimpleTreeTest.txt
+C:\projects\job4j_grabber\.idea\checkstyleidea-libs\readme.txt
+C:\projects\job4j_grabber\1. Профилирование. [#1591].txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.kiss.MaxMinTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.ood.ocp.ReportJsonTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.ood.ocp.ReportXmlTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.ood.srp.ReportAccountTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.ood.srp.ReportHRTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.ood.srp.ReportProgramTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.tdd.CinemaTest.txt
+C:\projects\job4j_grabber\target\surefire-reports\ru.job4j.template.GeneratorTempTest.txt
+C:\projects\job4j_tracker\1. Профилирование. [#1591].txt
+C:\projects\practice\.idea\checkstyleidea-libs\readme.txt
+C:\projects\practice\data\Gemployee1.txt
+C:\projects\practice\data\test1.txt
+C:\projects\practice\data\test2.txt
+C:\projects\practice\data\test3.txt
+C:\projects\practice\data\test4.txt
+C:\projects\practice\data\test5.txt
+C:\projects\practice\data\TO-1.txt
+C:\projects\practice\data\TO.txt
+C:\projects\practice\log1.txt
+C:\projects\practice\test10.txt
+C:\projects\practice\text.txt
