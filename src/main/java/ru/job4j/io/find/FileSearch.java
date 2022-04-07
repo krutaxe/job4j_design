@@ -2,7 +2,6 @@ package ru.job4j.io.find;
 
 import ru.job4j.io.ArgsName;
 import ru.job4j.io.SearchFiles;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
