@@ -5,7 +5,6 @@ C:\projects\job4j_design\404.txt
 C:\projects\job4j_design\down_server.txt
 C:\projects\job4j_design\even.txt
 C:\projects\job4j_design\log.txt
-C:\projects\job4j_design\log1.txt
 C:\projects\job4j_design\result.txt
 C:\projects\job4j_design\server_log.txt
 C:\projects\job4j_design\src\data\botAnswer.txt

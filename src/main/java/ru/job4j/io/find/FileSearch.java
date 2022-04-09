@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class FileSearch {
     public  static void validateArgs(String[] args) {
@@ -35,16 +36,32 @@ public class FileSearch {
         }
     }
 
+    public static Predicate<Path> predicate(String type, String name) {
+        Predicate<Path> pr = p -> false;
+        if (type.equals("mask")) {
+            name = name.replace(".", "[.]");
+            name = name.replace("*", ".*");
+            name = name.replace("?", ".{1}");
+            name = "^" + name + "$";
+            Pattern pattern = Pattern.compile(name);
+            pr = p -> pattern.matcher(p.getFileName().toString()).find();
+        } else if (type.equals("name")) {
+            String finalName = name;
+            pr = p -> p.getFileName().toString().equals(finalName);
+        }
+        return pr;
+    }
+
     public static void main(String[] args) throws IOException {
         validateArgs(args);
         ArgsName argsName = ArgsName.of(args);
         String dir = argsName.get("d");
         String name = argsName.get("n");
+        String type = argsName.get("t");
         String output = argsName.get("o");
 
-        Path dirPath = Paths.get(dir);
-        List<Path> pathList = searcher(dirPath, path -> path.toFile().getName().endsWith(name));
-        pathList.forEach(System.out::println);
+        Predicate<Path> predicate = predicate(type, name);
+        List<Path> pathList = searcher(Paths.get(dir), predicate);
         writer(output, pathList);
     }
 }
