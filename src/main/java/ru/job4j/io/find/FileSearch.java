@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public class FileSearch {
-    public  static void validateArgs(String[] args) {
+    private static void validateArgs(String[] args) {
         ArgsName argsName = ArgsName.of(args);
         if (argsName.size() != 4) {
             throw new IllegalArgumentException("Incorrect arguments");
@@ -24,19 +24,19 @@ public class FileSearch {
         }
     }
 
-    public static List<Path> searcher(Path path, Predicate<Path> predicate) throws IOException {
+    private static List<Path> searcher(Path path, Predicate<Path> predicate) throws IOException {
         SearchFiles searchFiles = new SearchFiles(predicate);
         Files.walkFileTree(path, searchFiles);
         return searchFiles.getPaths();
     }
 
-    public static void writer(String output, List<Path> pathList) throws IOException {
+    private static void writer(String output, List<Path> pathList) throws IOException {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(output))) {
             pathList.forEach(printWriter::println);
         }
     }
 
-    public static Predicate<Path> predicate(String type, String name) {
+    private static Predicate<Path> predicate(String type, String name) {
         Predicate<Path> pr = p -> false;
         if (type.equals("mask")) {
             name = name.replace(".", "[.]");
