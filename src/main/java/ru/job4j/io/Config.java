@@ -53,7 +53,8 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/app.properties");
+        Config config = new Config("C:\\projects\\job4j_design"
+               + "\\src\\main\\resources\\appTest.properties");
         config.load();
         System.out.println(config);
     }
